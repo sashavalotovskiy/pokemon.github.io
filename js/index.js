@@ -208,6 +208,8 @@
 
 			} 
 
+			if(positionElement < 0) positionElement = 0;
+
 			$('.js-pokemon_detail').css('margin-top', positionElement + 'px');
 		}
 	});
