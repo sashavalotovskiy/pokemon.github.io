@@ -14,10 +14,10 @@
 
 Использовались следующие технологии:
 
-* [Sass] - HTML enhanced for web apps!
-* [Backbone] - awesome web-based text editor
-* [Underscore] - a super fast port of Markdown to JavaScript
-* [jQuery] - duh
+* [Sass] 
+* [Backbone] 
+* [Underscore] 
+* [jQuery] 
 
 
 
