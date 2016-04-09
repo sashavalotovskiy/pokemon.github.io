@@ -2,9 +2,112 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width">
+	<title>Pokedex</title>
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	Test
+	
+	<div class="container">
+		<h1 class="container__title title">Pokedex</h1>
+
+		<div class="container__filter js-filter">
+		</div>
+
+		<div class="container__body clearfix">
+			<div class="col-8">
+
+				<div class="js-pokemons">
+				</div>
+				
+				<button class="load-more js-load-more">
+					Load More
+				</button>
+
+			</div>
+			<div class="col-4">
+				<div class="js-pokemon_detail">
+					<img src="img/pokemon-cardback-large.gif" class="pokemon-card" alt="pokemon detail" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="loader js-loader">
+	</div>
+	
+	<script id="filter" type="text/template">
+		<option value="all">All types</option>
+		<% _.each(types, function(type) { %>
+			<option value="<%= type.name %>"><%= type.name %></option> 
+		<% }); %>
+	</script>
+
+	<script id="pokemon-detail" type="text/template">
+		<img src="http://pokeapi.co/media/img/<%= national_id %>.png" class="pokemon__avatar" alt="pokemon avatar" />
+		<p class="pokemon__name"><%= name %> #<%= national_id %></p>
+		<table class="pokemon__info pokemon-info">
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Types</td>
+				<td class="pokemon-info__cell">
+					<% _.each(types, function(type) { %>
+						<%= type.name %>; 
+					<% }); %>
+				</td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Attack</td>
+				<td class="pokemon-info__cell"><%= attack %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Defence</td>
+				<td class="pokemon-info__cell"><%= defense %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">HP</td>
+				<td class="pokemon-info__cell"><%= hp %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">SP Attack</td>
+				<td class="pokemon-info__cell"><%= spAttack %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">SP defence</td>
+				<td class="pokemon-info__cell"><%= spdefense %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Speed</td>
+				<td class="pokemon-info__cell"><%= speed %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Weight</td>
+				<td class="pokemon-info__cell"><%= weight %></td>
+			</tr>
+			<tr class="pokemon-info__row">
+				<td class="pokemon-info__cell">Total moves</td>
+				<td class="pokemon-info__cell"><%= totalMoves %></td>
+			</tr>
+		</table>
+	</script>
+
+	<script id="pokemon" type="text/template">
+		<img src="http://pokeapi.co/media/img/<%= national_id %>.png" class="pokemon__avatar js-detail" alt="pokemon avatar" />
+		<p class="pokemon__name js-detail"><%= name %></p>
+		<ul class="pokemon__types pokemon-types clearfix">
+			<% _.each(types, function(type) { %>
+				<li class="pokemon-type pokemon-type_<%= type.name %>"><%= type.name %></li>
+			<% }); %>
+		</ul>
+	</script>
+
+	<script id="load-more" type="text/template">
+		
+	</script>
+
+	<script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="js/underscore-min.js"></script>
+	<script type="text/javascript" src="js/backbone-min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+
 </body>
 </html>

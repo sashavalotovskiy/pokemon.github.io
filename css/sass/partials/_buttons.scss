@@ -1,0 +1,172 @@
+/* --------------------------------
+
+BUttons
+
+-------------------------------- */
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+
+$btn-font-weight: 400;
+$padding-base-vertical: 5px;
+$padding-base-horizontal: 20px;
+$font-size-base: 16px;
+$btn-border-radius-base: 5px;
+$btn-default-color: #000;
+
+
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $btn-border-radius-base);
+  @include user-select(none);
+
+  &:hover,
+  &:focus,
+  &.focus {
+
+    text-decoration: none;
+  }
+
+  .main-css {
+    padding: 20px;
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    // cursor: $cursor-disabled;
+    @include opacity(.65);
+    @include box-shadow(none);
+  }
+}
+
+
+// analog switcher
+
+$analogWidth: 100px;
+
+.analog_btn {
+  display: inline-block;
+  width: $analogWidth;
+  height: $analogWidth*0.3;
+  position: relative;
+  margin: 0 auto;
+  background-color: #000000;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.2) inset;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  span {
+    display: block;
+    position: absolute;
+    top: 6px;
+    width: $analogWidth / 2.3;
+    height: $analogWidth / 4.6;
+    background-color: #1C1D1F;
+    transition: transform 300ms ease, box-shadow 300ms ease;
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Open Sans";
+      font-weight: 800;
+      font-size: 12px;
+      transition: text-shadow 800ms ease 100ms, color 800ms ease 100ms;
+    }
+    &:after {
+      content: "";
+      width: 4px;
+      height: 17px;
+      position: absolute;
+      top: 0;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+      transition: opacity 300ms ease;
+    }
+    &:first-of-type {
+      left: 4px;
+      top: 3px;
+      border-top-left-radius: 18px;
+      border-bottom-left-radius: 18px;
+      transform-style: preserve3d;
+      transform-origin: right center;
+      transform: perspective(2000px) rotateY(40deg);
+      box-shadow: -1px 0 1px rgba(255, 255, 255, 0.1) inset, -5px 0 8px rgba(255, 255, 255, 0.1) inset, 3px 0 0 rgba(255, 255, 255, 0.1) inset, -16px 0 7px rgba(40, 42, 44, 0.9), 9px 0 8px rgba(28, 29, 31, -1.3), -30px 0 8px rgba(28, 29, 31, -1.6);
+      &:before {
+        content: "ON";
+        color: rgba(0, 0, 0, 0.5);
+        text-shadow: 1px 4px 6px #1C1D1F, 0 0 0 black, 1px 4px 6px #1C1D1F;
+      }
+      &:after {
+        left: -1px;
+      }
+    }
+    &:last-of-type {
+      right: 4px;
+      top: 3px;
+      border-top-right-radius: 18px;
+      border-bottom-right-radius: 18px;
+      transform-origin: left center;
+      box-shadow: -1px 1px 1px rgba(255, 255, 255, 0.1) inset, 2px 0 2px rgba(255, 255, 255, 0.05) inset;
+      &:before {
+        content: "OFF";
+        color: #FF4847;
+        text-shadow: 0 0 24px rgba(255, 72, 71, 0.6);
+      }
+      &:after {
+        right: -1px;
+        opacity: 0;
+      }
+    }
+  }
+  &.analog-active {
+     span {
+      &:first-of-type {
+        transform: none;
+        box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, -2px 0 2px rgba(255, 255, 255, 0.05) inset;
+        &:before {
+          color: #93C913;
+          // text-shadow: 0 0 24px rgba(147, 201, 19, 0.6);
+        }
+        &:after {
+          opacity: 0;
+        }
+      }
+      &:last-of-type {
+        transform: perspective(2000px) rotateY(-40deg);
+        box-shadow:  1px 0 1px rgba(255, 255, 255, 0.1) inset, -4px 0 8px rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset, 10px 0 8px rgba(40, 42, 44, 0.9), 6px 0 8px rgba(28, 29, 31, 0.7), 30px 0 8px rgba(28, 29, 31, 0.4);
+        &:before {
+          color: rgba(0, 0, 0, 0.5);
+          text-shadow: 1px 4px 6px #1C1D1F, 0 0 0 #000, 1px 4px 6px #1C1D1F;
+        }
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+
