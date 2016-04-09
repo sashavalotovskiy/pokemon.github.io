@@ -296,7 +296,7 @@
 	// filter
 	$(document).on('change', '.filter', function (e) {
 		var type = $(this).val().toLowerCase();
-		$('.js-pokemon_detail').html();
+		$('.js-pokemon_detail').html('');
 		pokemonsView.searchByType(type);
 	});
 
